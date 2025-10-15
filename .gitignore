@@ -3,3 +3,5 @@ order/vendor
 proto-definitions/vendor
 notification/vendor
 user/vendor
+
+.idea
