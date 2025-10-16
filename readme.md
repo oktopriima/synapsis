@@ -131,3 +131,70 @@ synapsis/
 ├─────── go.mod
 └─────── go.sum
 ```
+
+## 🌍 Available endpoint
+
+### ORDER SERVICE
+- create order
+```
+curl --location 'http://localhost:8000/api/orders' \
+--header 'Content-Type: application/json' \
+--data '{
+    "products": {
+        "id": 7,
+        "quantity": 1
+    }
+}'
+```
+- cancel order
+```
+curl --location --request POST 'http://localhost:8000/api/orders/cancel/2'
+```
+
+### INVENTORY SERVICE
+- create product
+```
+curl --location 'http://localhost:8001/api/product' \
+--header 'Content-Type: application/json' \
+--data '{
+    "name" : "Sepatu boots",
+    "sku" : "10001",
+    "description" : "Sepatu boots dari indonesia asli",
+    "price" : 75000,
+    "stock" : {
+        "available_stock" : 10
+    }
+}'
+```
+- update product stock
+```
+curl --location 'http://localhost:8001/api/product/stock' \
+--data '{
+    "product_id" : 7,
+    "stock" : 5
+}'
+```
+For RPC 
+- CheckStock
+```
+{
+    "product_id": 1,
+    "quantity": 10
+}
+```
+- ReserveStock
+```
+{
+    "order_id": 1,
+    "product_id": 1,
+    "quantity": 1
+}
+```
+- ReleaseStock
+```
+{
+    "order_id": 1,
+    "product_id": 1,
+    "quantity": 1
+}
+```
