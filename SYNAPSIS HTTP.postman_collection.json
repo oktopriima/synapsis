@@ -1,0 +1,112 @@
+{
+	"info": {
+		"_postman_id": "4fffd885-1db9-449b-827f-0b1f32acaa49",
+		"name": "SYNAPSIS HTTP",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2696117"
+	},
+	"item": [
+		{
+			"name": "CREATE ORDER",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"products\": {\n        \"id\": 7,\n        \"quantity\": 1\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ORDER}}/api/orders",
+					"host": [
+						"{{ORDER}}"
+					],
+					"path": [
+						"api",
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CANCEL ORDER",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{ORDER}}/api/orders/cancel/2",
+					"host": [
+						"{{ORDER}}"
+					],
+					"path": [
+						"api",
+						"orders",
+						"cancel",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CREATE PRODUCT",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\" : \"Sepatu boots\",\n    \"sku\" : \"10001\",\n    \"description\" : \"Sepatu boots dari indonesia asli\",\n    \"price\" : 75000,\n    \"stock\" : {\n        \"available_stock\" : 10\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{INVENTORY}}/api/product",
+					"host": [
+						"{{INVENTORY}}"
+					],
+					"path": [
+						"api",
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UPDATE PRODUCT STOCK",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"product_id\" : 7,\n    \"stock\" : 5\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{INVENTORY}}/api/product/stock",
+					"host": [
+						"{{INVENTORY}}"
+					],
+					"path": [
+						"api",
+						"product",
+						"stock"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
