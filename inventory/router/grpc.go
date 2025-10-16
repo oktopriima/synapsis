@@ -1,14 +1,14 @@
 package router
 
 import (
-	"synapsis/inventory/app/controller"
+	"synapsis/inventory/app/handler/rpc"
 	pb "synapsis/proto-definitions/inventory"
 
 	"google.golang.org/grpc"
 )
 
 func NewGrpcRouter(server *grpc.Server,
-	inventoryController *controller.InventoryController,
+	inventoryHandler *rpc.InventoryHandler,
 ) {
-	pb.RegisterInventoryServiceServer(server, inventoryController)
+	pb.RegisterInventoryServiceServer(server, inventoryHandler)
 }

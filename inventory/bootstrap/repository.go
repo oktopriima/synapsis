@@ -17,5 +17,9 @@ func NewRepository(container *dig.Container) *dig.Container {
 		panic(err)
 	}
 
+	if err = container.Provide(repository.NewStockRepository); err != nil {
+		panic(err)
+	}
+
 	return container
 }

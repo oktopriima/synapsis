@@ -2,15 +2,15 @@ package router
 
 import (
 	"net/http"
-	handler "synapsis/order/app/handler/http"
+	handler "synapsis/inventory/app/handler/http"
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 )
 
-func NewRoute(
+func NewApiRouter(
 	e *echo.Echo,
-	orderHandler *handler.OrderHandler,
+	productHandler *handler.ProductHandler,
 ) {
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
@@ -19,17 +19,14 @@ func NewRoute(
 
 	route := e.Group("/api")
 
-	// ping
 	{
 		route.GET("/ping", func(c echo.Context) error {
 			return c.JSON(http.StatusOK, map[string]string{"message": "pong"})
 		})
 	}
 
-	// order route group
 	{
-		order := route.Group("/orders")
-		order.POST("", orderHandler.CreateOrderHandler)
-		order.POST("/cancel/:order_id", orderHandler.CancelOrderHandler)
+		route.POST("/product", productHandler.CreateProduct)
+		route.POST("/product/stock", productHandler.AddStock)
 	}
 }

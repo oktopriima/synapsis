@@ -10,5 +10,6 @@ func (db *DB) AutoMigrate() error {
 	return db.DB.AutoMigrate(
 		&Product{},
 		&StockMovement{},
+		&Stock{},
 	)
 }

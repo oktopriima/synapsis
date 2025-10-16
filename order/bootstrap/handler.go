@@ -1,14 +1,15 @@
 package bootstrap
 
 import (
+	"synapsis/order/app/handler/http"
+
 	"go.uber.org/dig"
-	"synapsis/order/app/controller"
 )
 
 func NewController(container *dig.Container) *dig.Container {
 	var err error
 
-	if err = container.Provide(controller.NewCreateController); err != nil {
+	if err = container.Provide(http.NewOrderHandler); err != nil {
 		panic(err)
 	}
 

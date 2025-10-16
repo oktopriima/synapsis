@@ -9,9 +9,14 @@ message Product {
   string sku = 3;
   string description = 4;
   float price = 5;
-  int64 total_stock = 6;
-  int64 available_stock = 7;
-  int64 reserved_stock = 8;
+}
+
+message Stock {
+  int64 id = 1;
+  int64 product_id = 2;
+  int64 total_stock = 3;
+  int64 available_stock = 4;
+  int64 reserved_stock = 5;
 }
 
 message CheckStockRequest {
@@ -20,9 +25,10 @@ message CheckStockRequest {
 }
 
 message CheckStockResponse {
-  int64 product_id = 1;
-  int64 quantity = 2;
-  bool is_available = 3;
+  Product product = 1;
+  Stock stock = 2;
+  int64 quantity = 3;
+  bool is_available = 4;
 }
 
 message ReserveStockRequest {
@@ -34,8 +40,6 @@ message ReserveStockRequest {
 message ReserveStockResponse {
   bool success = 1;
   string message = 2;
-  Product product = 3;
-  int64 order_id = 4;
 }
 
 message ReleaseStockRequest {
@@ -47,8 +51,6 @@ message ReleaseStockRequest {
 message ReleaseStockResponse {
   bool success = 1;
   string message = 2;
-  Product product = 3;
-  int64 order_id = 4;
 }
 
 service InventoryService {

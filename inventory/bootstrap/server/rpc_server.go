@@ -28,7 +28,7 @@ func NewRpcInstance(cfg config.AppConfig, server *grpc.Server) *RpcInstance {
 }
 
 func (r *RpcInstance) RunRpcServer() error {
-	port := fmt.Sprintf(":%s", r.Config.App.Port)
+	port := fmt.Sprintf(":%s", r.Config.App.RpcPort)
 	lis, err := net.Listen("tcp", port)
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)

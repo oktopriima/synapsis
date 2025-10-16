@@ -8,6 +8,7 @@ func NewBootstrap() *dig.Container {
 	c = NewApplication(c)
 	c = NewRepository(c)
 	c = NewController(c)
+	c = NewService(c)
 
 	return c
 }

@@ -3,18 +3,11 @@ package model
 import "time"
 
 type Product struct {
-	ID             int64     `gorm:"primaryKey"`
-	Name           string    `gorm:"not null"`
-	Sku            string    `gorm:"not null,unique"`
-	Description    string    `gorm:"not null"`
-	Price          float64   `gorm:"not null"`
-	TotalStock     int64     `gorm:"not null"`
-	AvailableStock int64     `gorm:"not null"`
-	ReservedStock  int64     `gorm:"not null"`
-	CreatedAt      time.Time `gorm:"autoCreateTime"`
-	UpdatedAt      time.Time `gorm:"autoUpdateTime"`
-}
-
-func (p *Product) TableName() string {
-	return "products"
+	ID          int64     `gorm:"primaryKey" json:"id"`
+	Name        string    `gorm:"not null" json:"name"`
+	Sku         string    `gorm:"not null,unique" json:"sku"`
+	Description string    `gorm:"not null" json:"description"`
+	Price       float64   `gorm:"not null" json:"price"`
+	CreatedAt   time.Time `gorm:"autoCreateTime" json:"created_at"`
+	UpdatedAt   time.Time `gorm:"autoUpdateTime" json:"updated_at"`
 }

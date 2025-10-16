@@ -9,10 +9,11 @@ import (
 	"os"
 	"time"
 
+	"synapsis/inventory/config"
+
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
-	"synapsis/inventory/config"
 )
 
 func connection(cfg config.AppConfig) (*gorm.DB, error) {
@@ -88,6 +89,6 @@ func (i *Instance) Database() *gorm.DB {
 func (i *Instance) Close() {
 	db, err := i.GormDB.DB()
 	if err == nil {
-		db.Close()
+		_ = db.Close()
 	}
 }

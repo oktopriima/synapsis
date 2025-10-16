@@ -18,6 +18,7 @@ type ProductRepository interface {
 	Find(ID int64, ctx context.Context) (*model.Product, error)
 	FindTransactionProduct(ID int64, tx *gorm.DB, ctx context.Context) (*model.Product, error)
 	Update(product *model.Product, tx *gorm.DB, ctx context.Context) error
+	Create(product *model.Product, tx *gorm.DB, ctx context.Context) (*model.Product, error)
 }
 
 func NewProductRepository(instance connection.DBInstance) ProductRepository {
@@ -27,7 +28,6 @@ func NewProductRepository(instance connection.DBInstance) ProductRepository {
 func (p *productRepository) Find(ID int64, ctx context.Context) (*model.Product, error) {
 	resp := new(model.Product)
 	tx := p.db.WithContext(ctx).
-		Model(&model.Product{}).
 		Where("id = ?", ID).
 		First(resp)
 
@@ -35,7 +35,7 @@ func (p *productRepository) Find(ID int64, ctx context.Context) (*model.Product,
 }
 
 func (p *productRepository) Update(product *model.Product, tx *gorm.DB, ctx context.Context) error {
-	return tx.WithContext(ctx).Updates(product).Error
+	return tx.WithContext(ctx).Save(product).Error
 }
 
 func (p *productRepository) FindTransactionProduct(ID int64, tx *gorm.DB, ctx context.Context) (*model.Product, error) {
@@ -46,4 +46,9 @@ func (p *productRepository) FindTransactionProduct(ID int64, tx *gorm.DB, ctx co
 		First(resp)
 
 	return resp, tx.Error
+}
+
+func (p *productRepository) Create(product *model.Product, tx *gorm.DB, ctx context.Context) (*model.Product, error) {
+	stmt := tx.WithContext(ctx).Create(product)
+	return product, stmt.Error
 }

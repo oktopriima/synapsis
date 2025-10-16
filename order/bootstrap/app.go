@@ -1,10 +1,10 @@
 package bootstrap
 
 import (
+	grpcclient "synapsis/order/bootstrap/grpc-client"
 	"synapsis/order/bootstrap/server"
 	"synapsis/order/config"
 	"synapsis/order/database/connection"
-	grpcclient "synapsis/order/grpc-client"
 
 	"github.com/labstack/echo/v4"
 	"go.uber.org/dig"

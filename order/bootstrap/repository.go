@@ -1,8 +1,9 @@
 package bootstrap
 
 import (
-	"go.uber.org/dig"
 	"synapsis/order/app/repository"
+
+	"go.uber.org/dig"
 )
 
 func NewRepository(container *dig.Container) *dig.Container {

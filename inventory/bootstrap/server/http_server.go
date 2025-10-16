@@ -7,10 +7,9 @@ import (
 	"net/http"
 	"os"
 	"os/signal"
+	"synapsis/inventory/config"
 	"syscall"
 	"time"
-
-	"synapsis/order/config"
 
 	"github.com/labstack/echo/v4"
 )
@@ -30,7 +29,7 @@ func NewEchoInstance(r *echo.Echo, cfg config.AppConfig) *EchoInstance {
 }
 
 func (server *EchoInstance) runHttp() (err error) {
-	port := fmt.Sprintf(":%s", server.Config.App.Port)
+	port := fmt.Sprintf(":%s", server.Config.App.HttpPort)
 
 	if err = server.Router.Start(port); err != nil {
 		return err

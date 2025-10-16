@@ -5,6 +5,7 @@ import (
 	"synapsis/inventory/config"
 	"synapsis/inventory/database/connection"
 
+	"github.com/labstack/echo/v4"
 	"go.uber.org/dig"
 	"google.golang.org/grpc"
 )
@@ -32,6 +33,19 @@ func NewApplication(container *dig.Container) *dig.Container {
 
 	if err = container.Provide(func() *grpc.Server {
 		return grpc.NewServer()
+	}); err != nil {
+		panic(err)
+	}
+
+	// provide echo instance
+	if err = container.Provide(server.NewEchoInstance); err != nil {
+		panic(err)
+	}
+
+	// provide router
+	if err = container.Provide(func() *echo.Echo {
+		e := echo.New()
+		return e
 	}); err != nil {
 		panic(err)
 	}

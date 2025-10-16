@@ -10,9 +10,10 @@ import (
 
 type AppConfig struct {
 	App struct {
-		Port   string `mapstructure:"port"`
-		Domain string `mapstructure:"domain"`
-		Name   string `mapstructure:"name"`
+		RpcPort  string `mapstructure:"rpc_port"`
+		HttpPort string `mapstructure:"http_port"`
+		Domain   string `mapstructure:"domain"`
+		Name     string `mapstructure:"name"`
 	} `mapstructure:"app"`
 	Postgres struct {
 		Host               string `mapstructure:"host"`

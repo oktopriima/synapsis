@@ -1,11 +1,12 @@
 package main
 
 import (
-	"go.uber.org/dig"
-	"gorm.io/gorm"
 	"synapsis/inventory/app/model"
 	"synapsis/inventory/config"
 	"synapsis/inventory/database/connection"
+
+	"go.uber.org/dig"
+	"gorm.io/gorm"
 )
 
 func main() {
