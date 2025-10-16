@@ -57,9 +57,7 @@ func (r *reserveStockService) Execute(ctx context.Context, req ReserveStockReque
 
 	tx := r.db.Begin()
 	defer func() {
-		if r := recover(); r != nil {
-			tx.Rollback()
-		}
+		tx.Rollback()
 	}()
 
 	stock, err := r.stockRepository.FindByProductTransaction(product.ID, tx, ctx)

@@ -65,9 +65,7 @@ func (c *createOrderService) Serve(req *CreateOrderRequest, ctx context.Context)
 
 	tx := c.db.Begin()
 	defer func() {
-		if recover() != nil {
-			tx.Rollback()
-		}
+		tx.Rollback()
 	}()
 
 	order, err := c.orderRepo.Create(&model.Order{

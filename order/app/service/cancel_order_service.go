@@ -49,9 +49,7 @@ func (c *cancelOrderService) Execute(ctx context.Context, req CancelOrderRequest
 
 	tx := c.db.Begin()
 	defer func() {
-		if r := recover(); r != nil {
-			tx.Rollback()
-		}
+		tx.Rollback()
 	}()
 
 	order, err := c.orderRepository.Find(req.OrderId, ctx)

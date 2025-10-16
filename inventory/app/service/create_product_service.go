@@ -55,9 +55,7 @@ func (c *createProductService) Execute(ctx context.Context, req CreateProductReq
 	output := new(CreateProductResponse)
 	tx := c.db.Begin()
 	defer func() {
-		if r := recover(); r != nil {
-			tx.Rollback()
-		}
+		tx.Rollback()
 	}()
 
 	// create product

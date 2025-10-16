@@ -50,9 +50,7 @@ func (a *addStockService) Execute(ctx context.Context, req AddStockRequest) (*Ad
 	output := new(AddStockResponse)
 	tx := a.db.Begin()
 	defer func() {
-		if r := recover(); r != nil {
-			tx.Rollback()
-		}
+		tx.Rollback()
 	}()
 
 	stock, err := a.stockRepository.FindByProductTransaction(req.ProductID, tx, ctx)

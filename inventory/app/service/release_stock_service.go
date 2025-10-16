@@ -47,9 +47,7 @@ func (r *releaseStockService) Execute(req ReleaseStockRequest, ctx context.Conte
 	output := new(ReleaseStockResponse)
 	tx := r.db.Begin()
 	defer func() {
-		if r := recover(); r != nil {
-			tx.Rollback()
-		}
+		tx.Rollback()
 	}()
 
 	stock, err := r.stockRepository.FindByProductTransaction(req.ProductId, tx, ctx)
